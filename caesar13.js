@@ -16,7 +16,7 @@ function encodeChar(char, shift = 0) {
     encodeValue(shift) {
       if (!this.range) return this.value;
 
-      const rangeWidth = this.range.max - this.range.min;
+      const rangeWidth = this.range.max - this.range.min + 1;
       return (
         ((this.value + shift - this.range.min) % rangeWidth) + this.range.min
       );
@@ -44,3 +44,6 @@ function caesar13(input = "") {
     return input;
   }
 }
+
+export { caesar13 };
+// module.exports = { caesar13 }; CommonJS module export
