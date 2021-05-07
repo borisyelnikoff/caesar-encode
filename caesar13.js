@@ -30,3 +30,17 @@ function encodeChar(char, shift = 0) {
 
   return String.fromCharCode(encodedChar.encodeValue(shift));
 }
+
+function caesar13(input = "") {
+  if (typeof input !== "string") {
+    throw new Error("Invalid input argument. String is expected");
+  }
+
+  const shift = 13;
+  try {
+    return [...input].map((char) => encodeChar(char, shift)).join("");
+  } catch (error) {
+    console.log("Empty string passed as an argument");
+    return input;
+  }
+}
