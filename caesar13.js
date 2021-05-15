@@ -6,26 +6,21 @@ class CharEncoder {
       );
     }
 
-    //Value property
+    // Value property
     let value = char.charCodeAt(0);
     Object.defineProperty(this, "value", {
       get() {
         return value;
       },
-      set(newValue) {
-        if (newValue && typeof newValue === "number") {
-          value = newValue;
-        }
-      },
     });
 
-    //Range property
+    // Range property
     const lowerCaseRange = { min: 97, max: 122 };
     const upperCaseRange = { min: 65, max: 90 };
     let range = null;
-    if (this.isInRange(lowerCaseRange)) {
+    if (/^[a-z]/.test(char)) {
       range = lowerCaseRange;
-    } else if (this.isInRange(upperCaseRange)) {
+    } else if (/^[A-Z]/.test(char)) {
       range = upperCaseRange;
     }
     Object.defineProperty(this, "range", {
@@ -35,14 +30,7 @@ class CharEncoder {
     });
   }
 
-  //methods
-  isInRange(range) {
-    if (range && range.min && range.max) {
-      return this.value >= range.min && this.value <= range.max;
-    }
-    return false;
-  }
-
+  // Methods
   encode(shift) {
     if (!this.range) return this.value;
 
